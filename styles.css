@@ -17,10 +17,9 @@
 
  .paddle {
    --position: 50; 
-  /* ln 11 & ln 17 uses JS */
+
   position: absolute;
   background-color: var(--foreground-color);
-  /* background color is now dynamically rendered by JS on ln 8 */
   width: 1vh;
   height: 10vh;
   top: calc(var(--position) * 1vh);
@@ -42,13 +41,10 @@
   background-color: var(--foreground-color);
   width: 2.5vh;
   height: 2.5vh;
-  /* pixel size of the ball */
   left: calc(var(--x) * 1vw);
   top: calc(var(--y) * 1vh);
   transform: translate(-50%, -50%);
-  /* centres the ball */
   border-radius: 50%;
-  /* rounds the ball */
  }
 
  .score {

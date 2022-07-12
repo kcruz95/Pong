@@ -10,7 +10,7 @@ const computerScoreElem = document.getElementById("computer-score");
 let lastTime
 function update(time) {
   if (lastTime != null) {
-    const delta = time - lastTime //determines how much time elapsed between frames
+    const delta = time - lastTime
     ball.update(delta, [playerPaddle.rect(), computerPaddle.rect()]);
     // ln 14 makes the ball move around
     computerPaddle.update(delta, ball.y);
@@ -18,12 +18,11 @@ function update(time) {
     const hue = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--hue"));
     document.documentElement.style.setProperty("--hue", hue + delta * 0.01);
     // change colour
-    
+
     if (isLose()) handleLose()
       // console.log("LOSE! / 你輸了！")
     };
     lastTime = time
-    // console.log(time);
     window.requestAnimationFrame(update)
     // creates an infinite loop to update the ball position
   };

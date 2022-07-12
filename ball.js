@@ -58,7 +58,7 @@ export default class Ball {
     if (paddleRects.some(r => isCollision(r, rect))) {
       this.direction.x *= -1
     };
-    // this block makes the ball rebound when hitting hte left & right of the screen
+    // this block makes the ball rebound when hitting the left & right of the screen
   };
 };
 
