@@ -4,22 +4,46 @@ import Paddle from './paddle.js'
 const ball = new Ball(document.getElementById("ball"));
 const playerPaddle = new Paddle(document.getElementById("player-paddle"));
 const computerPaddle = new Paddle(document.getElementById("computer-paddle"));
+const playerScoreElem = document.getElementById("player-score");
+const computerScoreElem = document.getElementById("computer-score");
 
 let lastTime
 function update(time) {
   if (lastTime != null) {
     const delta = time - lastTime //determines how much time elapsed between frames
-    // update the code
-    // console.log(delta);
-    // ball.update(delta);
-    // ln 11 makes the ball move around
+    ball.update(delta, [playerPaddle.rect(), computerPaddle.rect()]);
+    // ln 14 makes the ball move around
     computerPaddle.update(delta, ball.y);
-  }
-  lastTime = time
-  // console.log(time);
-  window.requestAnimationFrame(update)
-  // creates an infinite loop to update the ball position
-}
+    
+    const hue = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--hue"));
+    document.documentElement.style.setProperty("--hue", hue + delta * 0.01);
+    // change colour
+    
+    if (isLose()) handleLose()
+      // console.log("LOSE! / 你輸了！")
+    };
+    lastTime = time
+    // console.log(time);
+    window.requestAnimationFrame(update)
+    // creates an infinite loop to update the ball position
+  };
+
+  function isLose() {
+    const rect = ball.rect()
+    return (rect.right >= window.innerWidth || rect.left <= 0);
+  };
+
+  function handleLose() {
+    const rect = ball.rect()
+    if (rect.right >= window.innerWidth) {
+      playerScoreElem.textContent = parseInt(playerScoreElem.textContent) + 1;
+    } else {
+      computerScoreElem.textContent = parseInt(computerScoreElem.textContent) + 1;
+    };
+
+    ball.reset()
+    computerPaddle.reset()
+  };
 
 document.addEventListener("mousemove", e => {
   playerPaddle.position = e.y / window.innerHeight * 100;

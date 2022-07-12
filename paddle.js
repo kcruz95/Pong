@@ -4,6 +4,8 @@ const SPEED = .02;
 export default class Paddle {
   constructor(paddleElem) {
     this.paddleElem = paddleElem
+    this.reset()
+    // resets paddle to original positions after scoring
   };
 
   get position() {
@@ -12,6 +14,14 @@ export default class Paddle {
 
   set position(value) {
     this.paddleElem.style.setProperty("--position", value)
+  };
+
+  rect() {
+    return this.paddleElem.getBoundingClientRect()
+  };
+
+  reset() {
+    this.position = 50
   };
 
   update(delta, ballHeight) {
