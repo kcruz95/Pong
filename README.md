@@ -1,4 +1,6 @@
-# How to Play
+# Pong Clone
+
+## How to Play
 1) Import code locally
 2) Open in default browser
 
@@ -8,7 +10,7 @@
 2) Open with Live Server by pressing `fn` + `f1` and click on the `Live Server: Open with Live Server Option`
 3) Game should now be playable on default browser
 
-# Stacks Used:
+## Stacks Used:
 
 - HTML
 - CSS
